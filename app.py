@@ -5,18 +5,96 @@ board = [
     "-","-","-",
     "-","-","-",
 ]
+count=0
+
+def changePlayer(current):
+    global current_player
+    if current == "X":
+        current_player= "0"
+    if current == "0":
+        current_player="X"
+
 
 def play(position):
     global current_player
-    # your code here
+    global count 
+    if board[int(position)] != "-":
+        print("This position is not available")
+    else:
+        board[int(position)] = current_player
+        count +=1
+        check_for_winner ()
+        changePlayer(current_player)
 
 def check_for_winner():
-    # your code here
-    return False
+    global stop
+    global count
+    if count <9:
+        if board[6] == current_player and board[7] ==current_player and board[8] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True
+        if board[3] == current_player and board[4] ==current_player and board[5] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True
+        if board[0] == current_player and board[1] ==current_player and board[2] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True
+        if board[0] == current_player and board[3] ==current_player and board[6] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True       
+        if board[1] == current_player and board[4] ==current_player and board[7] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True   
+        if board[2] == current_player and board[5] ==current_player and board[8] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True 
+        if board[0] == current_player and board[4] ==current_player and board[8] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True 
+        if board[2] == current_player and board[4] ==current_player and board[6] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True 
+        if board[4] == current_player and board[5] ==current_player and board[6] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True 
+        if board[1] == current_player and board[2] ==current_player and board[3] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True 
+        if board[1] == current_player and board[4] ==current_player and board[7] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True 
+        if board[2] == current_player and board[5] ==current_player and board[8] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True 
+        if board[3] == current_player and board[6] ==current_player and board[9] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True
+        if board[1] == current_player and board[5] ==current_player and board[9] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True
+        if board[7] == current_player and board[5] ==current_player and board[3] == current_player: 
+            print("\nGame Over.\n")                
+            print(" " +current_player + " won. ")
+            stop = True
+    elif count == 9:
+        print("It's a tie")
+        stop = True
+    
 
-def new_game():
-    # your code here
-    pass
 
 def print_board():
     print(f"""
@@ -28,8 +106,11 @@ def print_board():
     """)
 
 while stop == False:
-    command = input("What do you want?: ")
+    command = input("Which key do you want?: ")
 
     if command == "stop":
         stop = True
-    # add commands here (if needed)
+    else:
+        play(command)
+
+    print_board()
